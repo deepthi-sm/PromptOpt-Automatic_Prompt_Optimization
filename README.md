@@ -39,35 +39,33 @@ PromptOpt is built around an iterative optimization loop with two evaluation mod
 
 ## Repository Structure
 
-Initial planning and context files in the directory:
 ├── flowchart-v2.svg          # Backend pipeline architecture diagram
 ├── prompt.md                 # Per-feature implementation prompts (14 features)
 ├── roadmap.md                # Build order, feature list, file structure
 ├── progress.md               # Session-by-session progress tracker
 └── promptopt/
-├── backend/              # FastAPI service
-│   ├── main.py
-│   ├── database.py
-│   ├── requirements.txt
-│   ├── core/             # Optimization pipeline modules
-│   │   ├── job_initializer.py
-│   │   ├── variant_generator.py
-│   │   ├── scorer.py
-│   │   ├── criteria_scorer.py
-│   │   ├── optimizer.py
-│   │   └── ranker.py
-│   └── routers/
-│       ├── runs.py
-│       └── export.py
-└── frontend/             # React + Vite app
-├── package.json
-├── index.html
-└── src/
-├── App.jsx
-├── components/
-├── hooks/
-└── lib/
-
+    ├── backend/              # FastAPI service
+    │   ├── main.py
+    │   ├── database.py
+    │   ├── requirements.txt
+    │   ├── core/             # Optimization pipeline modules
+    │   │   ├── job_initializer.py
+    │   │   ├── variant_generator.py
+    │   │   ├── scorer.py
+    │   │   ├── criteria_scorer.py
+    │   │   ├── optimizer.py
+    │   │   └── ranker.py
+    │   └── routers/
+    │       ├── runs.py
+    │       └── export.py
+    └── frontend/             # React + Vite app
+        ├── package.json
+        ├── index.html
+        └── src/
+            ├── App.jsx
+            ├── components/
+            ├── hooks/
+            └── lib/
 ## Setup
 
 ### Prerequisites
@@ -110,11 +108,11 @@ The frontend talks to the backend over CORS at `http://localhost:5173 → http:/
 
 ## How It Works
 User Input → Job Initializer → Variant Generator
-├── [with dataset]  → Dataset Scorer → Accuracy Evaluator
-└── [no dataset]    → Criteria Scorer
-└── Score Collector → Converged?
-├── No  → back to Variant Generator
-└── Yes → Ranker → Best Prompt Store → Export API → UI
+  ├── [with dataset]  → Dataset Scorer → Accuracy Evaluator
+  └── [no dataset]    → Criteria Scorer
+              └── Score Collector → Converged?
+                    ├── No  → back to Variant Generator
+                    └── Yes → Ranker → Best Prompt Store → Export API → UI
 
 1. Submit a base prompt and pick a mode (dataset or datasetless)
 2. Configure max iterations, variants per iteration, and an early-stop threshold
