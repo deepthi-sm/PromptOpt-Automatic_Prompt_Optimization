@@ -39,6 +39,7 @@ PromptOpt is built around an iterative optimization loop with two evaluation mod
 
 ## Repository Structure
 
+```
 ├── flowchart-v2.svg          # Backend pipeline architecture diagram
 ├── prompt.md                 # Per-feature implementation prompts (14 features)
 ├── roadmap.md                # Build order, feature list, file structure
@@ -66,6 +67,8 @@ PromptOpt is built around an iterative optimization loop with two evaluation mod
             ├── components/
             ├── hooks/
             └── lib/
+```
+
 ## Setup
 
 ### Prerequisites
@@ -84,7 +87,7 @@ npm install
 
 PromptOpt uses **Google Gemini** as the LLM for variant generation and scoring. You need a Gemini API key.
 
-- Gemini API Key: [Google AI Studio](https://aistudio.google.com/app/apikey)
+- Gemini API Key: [Google AI Studio]
 
 Create a `.env` file in `promptopt/backend/`:
 
@@ -107,12 +110,15 @@ npm run dev
 The frontend talks to the backend over CORS at `http://localhost:5173 → http://localhost:8000`.
 
 ## How It Works
+
+```
 User Input → Job Initializer → Variant Generator
   ├── [with dataset]  → Dataset Scorer → Accuracy Evaluator
   └── [no dataset]    → Criteria Scorer
               └── Score Collector → Converged?
                     ├── No  → back to Variant Generator
                     └── Yes → Ranker → Best Prompt Store → Export API → UI
+```
 
 1. Submit a base prompt and pick a mode (dataset or datasetless)
 2. Configure max iterations, variants per iteration, and an early-stop threshold
