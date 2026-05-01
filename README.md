@@ -1,4 +1,4 @@
-# PromptOpt — Automatic Prompt Optimization Platform
+# PromptOpt- Automatic Prompt Optimization Platform
 
 ## Overview
 
